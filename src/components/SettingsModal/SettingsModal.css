@@ -1,0 +1,13 @@
+.modal_content {
+}
+.modal_content {
+  display: flex;
+  flex-direction: row;
+}
+.modal_add-task {
+  display: flex;
+}
+.modal_input {
+}
+.modal_date {
+}

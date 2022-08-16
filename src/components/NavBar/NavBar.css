@@ -4,8 +4,20 @@
 }
 
 .navbar_name {
+  display: flex;
+  align-items: center;
   color: var(--white-color);
 }
+.navbar_name_text {
+  font-weight: 400;
+  font-size: 36px;
+}
 .navbar_settings {
+  display: flex;
+  align-items: center;
   color: var(--white-color);
+  border-radius: 10px;
+}
+.navbar_settings:hover {
+  cursor: pointer;
 }
