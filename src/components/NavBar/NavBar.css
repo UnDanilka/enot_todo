@@ -1,0 +1,11 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar_name {
+  color: var(--white-color);
+}
+.navbar_settings {
+  color: var(--white-color);
+}
