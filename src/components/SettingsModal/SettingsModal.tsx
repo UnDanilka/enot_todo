@@ -30,13 +30,13 @@ const SettingsModal = (props: {
   const { setStore } = context;
 
   const handleNewsSwitch = (e: any, check: boolean) => {
-    setStore((prev: any) => ({ ...prev, news: check }));
+    setStore((prev: IStore) => ({ ...prev, news: check }));
   };
 
   const handleInputText = (e: any) => {
     setText(e.target.value);
   };
-  const handleInputDate = (newValue: any) => {
+  const handleInputDate = (newValue: Date | null) => {
     setDate(newValue);
   };
 
@@ -51,12 +51,10 @@ const SettingsModal = (props: {
   useEffect(() => {
     if (todo.text)
       setStore((prev: IStore) => {
-        const sameDate = prev.todos.find(
-          (item: any) => item.date === todo.date
-        );
+        const sameDate = prev.todos.find((item) => item.date === todo.date);
         let newArr;
         if (sameDate) {
-          newArr = prev.todos.map((item: any) => {
+          newArr = prev.todos.map((item) => {
             let result = item;
             if (item.date === todo.date) {
               result.tasks.push({
