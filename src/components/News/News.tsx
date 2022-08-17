@@ -25,7 +25,7 @@ const News = () => {
 
   return (
     <div className="marquee">
-      <p>{newsState}</p>
+      <span>{newsState}</span>
     </div>
   );
 };

@@ -1,25 +1,41 @@
 .marquee {
-  display: flex;
-  width: calc(100vw - 74px);
-  margin: 0 auto;
-  font-size: 26px;
-  color: #cccccc;
+  display: block;
+  width: 80vw;
   white-space: nowrap;
   overflow: hidden;
-  border-radius: 4px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  min-height: 80px;
 }
-.marquee p {
+
+.marquee span {
   display: inline-block;
-  animation: marquee 500s linear infinite;
+  padding-left: 100%;
+  -webkit-animation: scroll 5s infinite linear;
+  -moz-animation: scroll 5s infinite linear;
+  animation: scroll 600s infinite linear;
 }
 
-.marquee p:hover {
-  animation-play-state: paused;
+@-webkit-keyframes scroll {
+  0% {
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+  }
+  100% {
+    -webkit-transform: translate(-100%, 0);
+    transform: translate(-100%, 0);
+  }
 }
 
-@keyframes marquee {
+@-moz-keyframes scroll {
+  0% {
+    -moz-transform: translate(0, 0);
+    transform: translate(0, 0);
+  }
+  100% {
+    -moz-transform: translate(-100%, 0);
+    transform: translate(-100%, 0);
+  }
+}
+
+@keyframes scroll {
   0% {
     transform: translate(0, 0);
   }
