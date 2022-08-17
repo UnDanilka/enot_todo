@@ -17,12 +17,15 @@ import moment from "moment";
 const SettingsModal = (props: any) => {
   const { settingsVisible, handleCloseSettings } = props;
   const [date, setDate] = useState<Date | null>(null);
-  const [todo, setTodo] = useState<any>({});
+  const [todo, setTodo] = useState<{ text: string; date: string }>({
+    text: "",
+    date: "",
+  });
   const [text, setText] = useState("");
-  const context: any = useContext(StoreContext);
+  const context = useContext(StoreContext);
   const { setStore } = context;
 
-  const handleNewsSwitch = (e: any, check: any) => {
+  const handleNewsSwitch = (e: any, check: boolean) => {
     setStore((prev: any) => ({ ...prev, news: check }));
   };
 

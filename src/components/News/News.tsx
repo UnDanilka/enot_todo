@@ -14,7 +14,7 @@ const fetchNews = async () => {
 const News = () => {
   const { data, status } = useQuery("news", fetchNews);
 
-  const [newsState, setNewsState] = useState();
+  const [newsState, setNewsState] = useState<string>();
 
   useEffect(() => {
     if (status === "success") {
@@ -25,10 +25,11 @@ const News = () => {
         content: item.content,
       }));
       const strArr = parsedNews.map(
-        (item: any) => `${(item.title, item.content)}`
+        (item: { title: string; content: string }) =>
+          `${(item.title, item.content)}`
       );
       const singleStr = strArr.reduce(
-        (acc: any, item: any) => acc + item,
+        (acc: string, item: string) => acc + item,
         [""]
       );
       setNewsState(singleStr);
