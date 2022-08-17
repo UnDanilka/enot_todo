@@ -1,9 +1,43 @@
-import React, { useState, createContext } from "react";
+import React, {
+  useState,
+  createContext,
+  Dispatch,
+  SetStateAction,
+} from "react";
+import { IStore } from "./types";
 
-export const StoreContext = createContext({});
+export const StoreContext = createContext<{
+  store: IStore;
+  setStore: (() => undefined) | Dispatch<SetStateAction<IStore>>;
+}>({
+  store: {
+    news: true,
+    todos: [
+      {
+        date: "",
+        tasks: [
+          { title: "", done: false, id: 1 },
+          { title: "", done: false, id: 2 },
+          { title: "", done: false, id: 3 },
+        ],
+      },
+    ],
+  },
+  setStore: () => undefined,
+});
 
-export const StoreContextProvider = (props: any) => {
-  const [store, setStore] = useState<any>({
+export const StoreContextProvider = (props: {
+  children:
+    | string
+    | number
+    | boolean
+    | React.ReactElement<any, string | React.JSXElementConstructor<any>>
+    | React.ReactFragment
+    | React.ReactPortal
+    | null
+    | undefined;
+}) => {
+  const [store, setStore] = useState<IStore>({
     news: true,
     todos: [
       {

@@ -6,7 +6,7 @@ import Todo from "./components/Todo/Todo";
 import { StoreContext } from "./StoreContext";
 
 function App() {
-  const context: any = useContext(StoreContext);
+  const context = useContext(StoreContext);
   const { store } = context;
 
   return (
@@ -14,7 +14,7 @@ function App() {
       <div className="main-container">
         <NavBar />
         <div className="todo_list">
-          {store.todos.map((todo: any, i: number) => (
+          {store.todos.map((todo, i: number) => (
             <Todo key={i} todo={todo} />
           ))}
         </div>

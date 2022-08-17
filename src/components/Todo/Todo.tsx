@@ -8,6 +8,7 @@ import { Switch, SwitchProps } from "@mui/material";
 import "./Todo.css";
 import { useContext } from "react";
 import { StoreContext } from "../../StoreContext";
+import { ITodos } from "../../types";
 
 const IOSSwitch = styled((props: SwitchProps) => (
   <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
@@ -54,15 +55,15 @@ const IOSSwitch = styled((props: SwitchProps) => (
   },
 }));
 
-const Todo = (props: any) => {
-  const context: any = useContext(StoreContext);
+const Todo = (props: { todo: ITodos }) => {
+  const context = useContext(StoreContext);
   const { setStore } = context;
   const { todo } = props;
 
-  const handleDoneChange = (id: any, e: any, check: any) => {
-    setStore((prev: any) => {
+  const handleDoneChange = (id: string, check: boolean) => {
+    setStore((prev) => {
       let newArr = [...prev.todos];
-      newArr = newArr.map((dateObj: any) => {
+      newArr = newArr.map((dateObj) => {
         return {
           date: dateObj.date,
           tasks: dateObj.tasks.map((taskObj: any) => {
@@ -110,7 +111,7 @@ const Todo = (props: any) => {
                   </div>
                 </div>
                 <IOSSwitch
-                  onChange={(e, check) => handleDoneChange(task.id, e, check)}
+                  onChange={(e, check) => handleDoneChange(task.id, check)}
                 />
               </div>
             );
