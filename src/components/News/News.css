@@ -1,0 +1,28 @@
+.marquee {
+  display: flex;
+  width: calc(100vw - 74px);
+  margin: 0 auto;
+  font-size: 26px;
+  color: #cccccc;
+  white-space: nowrap;
+  overflow: hidden;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.marquee p {
+  display: inline-block;
+  animation: marquee 500s linear infinite;
+}
+
+.marquee p:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-100%, 0);
+  }
+}

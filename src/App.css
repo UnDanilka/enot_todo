@@ -7,6 +7,7 @@
   background: #333333;
   height: 100vh;
   font-family: sans-serif;
+  color: white;
 }
 
 .main-container {
@@ -14,4 +15,10 @@
   flex-direction: column;
   flex: 1;
   margin: 13px 37px;
+}
+
+.todo_list {
+  display: flex;
+  flex-grow: 1;
+  margin: 10px 0;
 }

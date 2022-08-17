@@ -1,13 +1,30 @@
 .modal_content {
-}
-.modal_content {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  color: white;
+  align-items: center;
 }
 .modal_add-task {
   display: flex;
 }
-.modal_input {
+
+.modal_title {
+  margin: 10px 0;
 }
-.modal_date {
+
+.modal_button {
+  color: white !important;
+  height: 100%;
+  border-color: white !important;
+}
+.modal_button:hover {
+  border-color: rgb(204, 202, 202) !important;
+}
+
+.modal_switch {
+  display: flex;
+}
+.modal_switch_label {
+  display: flex;
+  align-items: center;
 }
