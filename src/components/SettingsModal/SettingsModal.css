@@ -5,7 +5,7 @@
   align-items: center;
 }
 .modal_add-task {
-  display: flex;
+  /* display: flex; */
 }
 
 .modal_title {
@@ -16,6 +16,7 @@
   color: white !important;
   height: 100%;
   border-color: white !important;
+  width: 100%;
 }
 .modal_button:hover {
   border-color: rgb(204, 202, 202) !important;

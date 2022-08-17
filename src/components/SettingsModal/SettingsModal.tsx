@@ -87,6 +87,7 @@ const SettingsModal = (props: {
           <div className="modal_add-task">
             <div className="modal_input">
               <TextField
+                style={{ width: "100%" }}
                 label="Add task"
                 variant="outlined"
                 inputProps={inputProps}
