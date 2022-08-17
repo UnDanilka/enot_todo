@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 import "./News.css";
 
 const fetchNews = async () => {
-  const res = await fetch(`http://hp-api.herokuapp.com/api/characters`);
+  const res = await fetch(`https://hp-api.herokuapp.com/api/characters`);
   return res.json();
 };
 
