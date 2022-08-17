@@ -6,7 +6,8 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { accordionStyle } from "../../constants";
 import "./Todo.css";
 
-const Todo = () => {
+const Todo = (props: any) => {
+  const { todo } = props;
   return (
     <div className="todo">
       <Accordion sx={accordionStyle}>
@@ -19,18 +20,21 @@ const Todo = () => {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography>
-            <div className="summary">
-              <div className="summary_block" />
-              <div className="summary_label">Accordion 1</div>
-            </div>
-          </Typography>
+          <div className="summary">
+            <div className="summary_block" />
+            <div className="summary_label">{todo.date} Tasks</div>
+          </div>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </Typography>
+          {todo.tasks.map((task: any, i: number) => {
+            console.log(i % 3);
+            return (
+              <div className="todo_task" key={i}>
+                <div className={`todo_task_block-${i % 3}`} />
+                <div className="todo_task_label">{task}</div>
+              </div>
+            );
+          })}
         </AccordionDetails>
       </Accordion>
     </div>

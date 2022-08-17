@@ -7,10 +7,35 @@
 .summary {
   display: flex;
   gap: 13px;
+  font-weight: 600;
+  font-size: 24px;
 }
 
 .summary_block {
   width: 5px;
   background-color: grey;
+  border-radius: 3px;
+}
+.todo_task {
+  display: flex;
+  gap: 13px;
+  margin-bottom: 15px;
+  font-weight: 600;
+  font-size: 24px;
+}
+
+.todo_task_block-0 {
+  width: 5px;
+  background-color: rgb(197, 0, 0);
+  border-radius: 3px;
+}
+.todo_task_block-1 {
+  width: 5px;
+  background-color: rgb(0, 36, 197);
+  border-radius: 3px;
+}
+.todo_task_block-2 {
+  width: 5px;
+  background-color: rgb(228, 231, 33);
   border-radius: 3px;
 }

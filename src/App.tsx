@@ -7,15 +7,18 @@ import { StoreContext } from "./StoreContext";
 
 function App() {
   const context: any = useContext(StoreContext);
+  const { store } = context;
 
   return (
     <div className="app">
       <div className="main-container">
         <NavBar />
         <div className="todo_list">
-          <Todo />
+          {store.todos.map((todo: any, i: number) => (
+            <Todo key={i} todo={todo} />
+          ))}
         </div>
-        {context.store?.news && <News />}
+        {store?.news && <News />}
       </div>
     </div>
   );

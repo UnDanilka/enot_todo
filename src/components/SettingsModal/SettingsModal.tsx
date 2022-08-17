@@ -6,20 +6,66 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import Switch from "@mui/material/Switch";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import Button from "@mui/material/Button";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { inputProps, modalStyle, textAreaStyle } from "../../constants";
 
 import "./SettingsModal.css";
 import { StoreContext } from "../../StoreContext";
+import moment from "moment";
 
 const SettingsModal = (props: any) => {
   const { settingsVisible, handleCloseSettings } = props;
   const [date, setDate] = useState<Date | null>(null);
+  const [todo, setTodo] = useState<any>({});
+  const [text, setText] = useState("");
   const context: any = useContext(StoreContext);
+  const { setStore } = context;
 
   const handleNewsSwitch = (e: any, check: any) => {
-    context.setStore((prev: any) => ({ ...prev, news: check }));
+    setStore((prev: any) => ({ ...prev, news: check }));
   };
+
+  const handleInputText = (e: any) => {
+    setText(e.target.value);
+  };
+  const handleInputDate = (newValue: any) => {
+    setDate(newValue);
+  };
+
+  const handleAddTask = () => {
+    if (text && date) {
+      setTodo({ text, date: moment(date).format("DD/MM") });
+      setDate(null);
+      setText("");
+    }
+  };
+
+  useEffect(() => {
+    if (todo.text)
+      setStore((prev: any) => {
+        const sameDate = prev.todos.find(
+          (item: any) => item.date === todo.date
+        );
+        let newArr;
+        if (sameDate) {
+          newArr = prev.todos.map((item: any) => {
+            let result = item;
+            if (item.date === todo.date) {
+              result.tasks.push(todo.text);
+            }
+            return result;
+          });
+        } else {
+          newArr = [...prev.todos];
+          newArr.push({ date: todo.date, tasks: [todo.text] });
+        }
+        console.log(sameDate);
+        return {
+          ...prev,
+          todos: newArr,
+        };
+      });
+  }, [setStore, todo]);
 
   return (
     <Modal open={settingsVisible} onClose={handleCloseSettings}>
@@ -33,17 +79,17 @@ const SettingsModal = (props: any) => {
                 variant="outlined"
                 inputProps={inputProps}
                 sx={textAreaStyle}
+                value={text}
+                onChange={handleInputText}
               />
             </div>
             <div className="modal_date">
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
-                  label="Basic example"
+                  label="Enter task date"
                   value={date}
                   inputFormat="dd/MM/yyyy"
-                  onChange={(newValue: any) => {
-                    setDate(newValue);
-                  }}
+                  onChange={handleInputDate}
                   renderInput={(params: any) => (
                     <TextField
                       inputProps={inputProps}
@@ -59,7 +105,12 @@ const SettingsModal = (props: any) => {
               </LocalizationProvider>
             </div>
             <div className="modal_send">
-              <Button variant="outlined" size="large" className="modal_button">
+              <Button
+                variant="outlined"
+                size="large"
+                className="modal_button"
+                onClick={handleAddTask}
+              >
                 ADD
               </Button>
             </div>
