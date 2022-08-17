@@ -51,15 +51,17 @@ const SettingsModal = (props: any) => {
           newArr = prev.todos.map((item: any) => {
             let result = item;
             if (item.date === todo.date) {
-              result.tasks.push(todo.text);
+              result.tasks.push({ title: todo.text, done: false });
             }
             return result;
           });
         } else {
           newArr = [...prev.todos];
-          newArr.push({ date: todo.date, tasks: [todo.text] });
+          newArr.push({
+            date: todo.date,
+            tasks: [{ title: todo.text, done: false }],
+          });
         }
-        console.log(sameDate);
         return {
           ...prev,
           todos: newArr,

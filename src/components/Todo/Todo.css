@@ -18,10 +18,16 @@
 }
 .todo_task {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   gap: 13px;
   margin-bottom: 15px;
-  font-weight: 600;
   font-size: 24px;
+}
+.todo_task_left {
+  display: flex;
+  justify-content: space-between;
+  gap: 13px;
 }
 
 .todo_task_block-0 {

@@ -8,11 +8,18 @@ export const StoreContextProvider = (props: any) => {
     todos: [
       {
         date: "15/08",
-        tasks: ["Grab some food", "Go to the school", "Watch movie"],
+        tasks: [
+          { title: "Grab some food", done: false },
+          { title: "Go to the school", done: false },
+          { title: "Watch movie", done: false },
+        ],
       },
       {
         date: "16/08",
-        tasks: ["Go to the museum", "Have a lunch"],
+        tasks: [
+          { title: "Go to the museum", done: false },
+          { title: "Have a lunch", done: false },
+        ],
       },
     ],
   });
