@@ -1,21 +1,20 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import "./News.css";
 
+const API_KEY = process.env.REACT_APP_API_KEY;
+
 const fetchNews = async () => {
   const res = await fetch(
-    "https://newsapi.org/v2/everything?q=bitcoin&apiKey=28fbe73b30544837bac170f1bdb89308"
+    `https://newsapi.org/v2/everything?q=bitcoin&apiKey=${API_KEY}`
   );
   return res.json();
 };
 
 const News = () => {
   const { data, status } = useQuery("news", fetchNews);
-  console.log(data);
 
   const [newsState, setNewsState] = useState();
-
-  useEffect(() => console.log(newsState), [newsState]);
 
   useEffect(() => {
     if (status === "success") {

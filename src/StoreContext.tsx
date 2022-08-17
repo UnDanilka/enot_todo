@@ -1,4 +1,4 @@
-import React, { useState, createContext, useEffect } from "react";
+import React, { useState, createContext } from "react";
 
 export const StoreContext = createContext({});
 
@@ -24,7 +24,6 @@ export const StoreContextProvider = (props: any) => {
     ],
   });
 
-  useEffect(() => console.log(store), [store]);
   return (
     <StoreContext.Provider value={{ store, setStore }}>
       {props.children}

@@ -60,7 +60,6 @@ const Todo = (props: any) => {
   const { todo } = props;
 
   const handleDoneChange = (id: any, e: any, check: any) => {
-    console.log(id, check);
     setStore((prev: any) => {
       let newArr = [...prev.todos];
       newArr = newArr.map((dateObj: any) => {
