@@ -8,7 +8,7 @@ import { Switch, SwitchProps } from "@mui/material";
 import "./Todo.css";
 import { useContext } from "react";
 import { StoreContext } from "../../StoreContext";
-import { ITodos } from "../../types";
+import { ITask, ITodos } from "../../types";
 
 const IOSSwitch = styled((props: SwitchProps) => (
   <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
@@ -60,7 +60,7 @@ const Todo = (props: { todo: ITodos }) => {
   const { setStore } = context;
   const { todo } = props;
 
-  const handleDoneChange = (id: string, check: boolean) => {
+  const handleDoneChange = (id: string | number, check: boolean) => {
     setStore((prev) => {
       let newArr = [...prev.todos];
       newArr = newArr.map((dateObj) => {
@@ -97,7 +97,7 @@ const Todo = (props: { todo: ITodos }) => {
           </div>
         </AccordionSummary>
         <AccordionDetails>
-          {todo.tasks.map((task: any, i: number) => {
+          {todo.tasks.map((task: ITask, i: number) => {
             return (
               <div className="todo_task" key={i}>
                 <div className="todo_task_left">

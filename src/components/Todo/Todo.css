@@ -16,6 +16,7 @@
   background-color: grey;
   border-radius: 3px;
 }
+
 .todo_task {
   display: flex;
   justify-content: space-between;

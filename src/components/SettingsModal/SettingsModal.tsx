@@ -13,8 +13,12 @@ import { v4 as uuidv4 } from "uuid";
 import "./SettingsModal.css";
 import { StoreContext } from "../../StoreContext";
 import moment from "moment";
+import { IStore } from "../../types";
 
-const SettingsModal = (props: any) => {
+const SettingsModal = (props: {
+  settingsVisible: boolean;
+  handleCloseSettings: () => void;
+}) => {
   const { settingsVisible, handleCloseSettings } = props;
   const [date, setDate] = useState<Date | null>(null);
   const [todo, setTodo] = useState<{ text: string; date: string }>({
@@ -46,7 +50,7 @@ const SettingsModal = (props: any) => {
 
   useEffect(() => {
     if (todo.text)
-      setStore((prev: any) => {
+      setStore((prev: IStore) => {
         const sameDate = prev.todos.find(
           (item: any) => item.date === todo.date
         );
