@@ -8,6 +8,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import Button from "@mui/material/Button";
 import { useContext, useEffect, useState } from "react";
 import { inputProps, modalStyle, textAreaStyle } from "../../constants";
+import { v4 as uuidv4 } from "uuid";
 
 import "./SettingsModal.css";
 import { StoreContext } from "../../StoreContext";
@@ -51,7 +52,11 @@ const SettingsModal = (props: any) => {
           newArr = prev.todos.map((item: any) => {
             let result = item;
             if (item.date === todo.date) {
-              result.tasks.push({ title: todo.text, done: false });
+              result.tasks.push({
+                title: todo.text,
+                done: false,
+                id: uuidv4(),
+              });
             }
             return result;
           });
@@ -59,7 +64,7 @@ const SettingsModal = (props: any) => {
           newArr = [...prev.todos];
           newArr.push({
             date: todo.date,
-            tasks: [{ title: todo.text, done: false }],
+            tasks: [{ title: todo.text, done: false, id: uuidv4() }],
           });
         }
         return {

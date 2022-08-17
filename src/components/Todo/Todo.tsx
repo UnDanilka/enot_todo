@@ -6,6 +6,8 @@ import { accordionStyle } from "../../constants";
 import styled from "@emotion/styled";
 import { Switch, SwitchProps } from "@mui/material";
 import "./Todo.css";
+import { useContext } from "react";
+import { StoreContext } from "../../StoreContext";
 
 const IOSSwitch = styled((props: SwitchProps) => (
   <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
@@ -53,7 +55,30 @@ const IOSSwitch = styled((props: SwitchProps) => (
 }));
 
 const Todo = (props: any) => {
+  const context: any = useContext(StoreContext);
+  const { setStore } = context;
   const { todo } = props;
+
+  const handleDoneChange = (id: any, e: any, check: any) => {
+    console.log(id, check);
+    setStore((prev: any) => {
+      let newArr = [...prev.todos];
+      newArr = newArr.map((dateObj: any) => {
+        return {
+          date: dateObj.date,
+          tasks: dateObj.tasks.map((taskObj: any) => {
+            if (taskObj.id === id) {
+              return { ...taskObj, done: check };
+            } else {
+              return taskObj;
+            }
+          }),
+        };
+      });
+      return { ...prev, todos: newArr };
+    });
+  };
+
   return (
     <div className="todo">
       <Accordion sx={accordionStyle}>
@@ -77,9 +102,17 @@ const Todo = (props: any) => {
               <div className="todo_task" key={i}>
                 <div className="todo_task_left">
                   <div className={`todo_task_block-${i % 3}`} />
-                  <div className="todo_task_label">{task.title}</div>
+                  <div
+                    className={` ${
+                      task.done ? "todo_task_label_done" : "todo_task_label"
+                    } `}
+                  >
+                    {task.title}
+                  </div>
                 </div>
-                <IOSSwitch />
+                <IOSSwitch
+                  onChange={(e, check) => handleDoneChange(task.id, e, check)}
+                />
               </div>
             );
           })}

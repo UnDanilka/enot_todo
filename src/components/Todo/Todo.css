@@ -30,6 +30,10 @@
   gap: 13px;
 }
 
+.todo_task_label_done {
+  text-decoration: line-through;
+}
+
 .todo_task_block-0 {
   width: 5px;
   background-color: rgb(197, 0, 0);

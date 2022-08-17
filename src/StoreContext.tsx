@@ -9,16 +9,16 @@ export const StoreContextProvider = (props: any) => {
       {
         date: "15/08",
         tasks: [
-          { title: "Grab some food", done: false },
-          { title: "Go to the school", done: false },
-          { title: "Watch movie", done: false },
+          { title: "Grab some food", done: false, id: 1 },
+          { title: "Go to the school", done: false, id: 2 },
+          { title: "Watch movie", done: false, id: 3 },
         ],
       },
       {
         date: "16/08",
         tasks: [
-          { title: "Go to the museum", done: false },
-          { title: "Have a lunch", done: false },
+          { title: "Go to the museum", done: false, id: 4 },
+          { title: "Have a lunch", done: false, id: 5 },
         ],
       },
     ],
